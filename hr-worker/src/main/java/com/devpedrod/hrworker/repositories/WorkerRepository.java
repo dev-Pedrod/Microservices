@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import com.devpedrod.hrworker.entities.Worker;
 
 @Repository
-public interface WorkerRespository extends JpaRepository<Worker, Long> {
+public interface WorkerRepository extends JpaRepository<Worker, Long> {
 
 }

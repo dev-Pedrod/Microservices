@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.devpedrod.hrworker.entities.Worker;
-import com.devpedrod.hrworker.repositories.WorkerRespository;
+import com.devpedrod.hrworker.repositories.WorkerRepository;
 
 @RefreshScope
 @RestController
@@ -31,7 +31,7 @@ public class WorkerResource {
 	private Environment ev;
 	
 	@Autowired
-	private WorkerRespository workerRespository;
+	private WorkerRepository workerRepository;
 	
 	@GetMapping(value = "/configs")
 	public ResponseEntity<Void> getConfigs() {
@@ -41,7 +41,7 @@ public class WorkerResource {
 	
 	@GetMapping
 	public ResponseEntity<List<Worker>> findAll() {
-		List<Worker> workers = workerRespository.findAll();
+		List<Worker> workers = workerRepository.findAll();
 		return ResponseEntity.ok().body(workers);
 	}
 	
@@ -56,7 +56,7 @@ public class WorkerResource {
 		
 		logger.info("PORT = " + ev.getProperty("local.server.port"));
 		
-		Worker worker = workerRespository.findById(id).get();
+		Worker worker = workerRepository.findById(id).get();
 		return ResponseEntity.ok().body(worker);
 	}
 }
